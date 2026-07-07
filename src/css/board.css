@@ -100,27 +100,34 @@
   justify-content: space-between;
 }
 
-.card__info span {
+.card__date {
   color: var(--color-text-muted);
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.btn-concluir {
-  background-color: var(--color-brand-primary);
+.btn-concluir,
+.btn-concluido {
   padding: var(--spacing-sm);
   border-radius: var(--radius-sm);
   color: #fff;
   transition: background 0.3s ease-in-out;
 }
 
-.column__list--completed .btn-concluir {
-  background-color: var(--color-success);
+.btn-concluir {
+  background-color: var(--color-brand-primary);
 }
 
 .btn-concluir:hover {
   background-color: var(--color-brand-primary-hover);
 }
 
-.column__list--completed .btn-concluir:hover {
+.btn-concluido {
+  background-color: var(--color-success);
+}
+
+.btn-concluido:hover {
   background-color: var(--color-success-hover);
 }
