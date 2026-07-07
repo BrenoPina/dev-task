@@ -10,7 +10,14 @@
   /* --- CORES SEMÂNTICAS --- */
   --color-success: #16a34a; /* Verde (Para tarefas concluídas/botão concluir) */
   --color-success-hover: #15803d;
+  --color-success-column: #e4f7eb;
+  --color-success-column-border: #ceeeda;
+  --color-in-progress: #7b97ea;
+  --color-in-progress-column: #eef2ff;
+  --color-in-progress-column-border: #b6c6f7;
   --color-warning: #ea580c; /* Laranja (Para tarefas pendentes) */
+  --color-warning-column: #fff7ed;
+  --color-warning-column-border: #fde9d1;
 
   /* --- NEUTROS (Fundos e Textos) --- */
   --color-bg-main: #f8fafc; /* Fundo da aplicação */
@@ -21,11 +28,11 @@
   --color-text-muted: #64748b; /* Textos secundários/subtítulos */
 
   /* --- ESCALA DE ESPAÇAMENTO (Múltiplos de 4px/8px) --- */
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
+  --spacing-xs: 0.4rem; /* 4px */
+  --spacing-sm: 0.8rem; /* 8px */
+  --spacing-md: 1.6rem; /* 16px */
+  --spacing-lg: 2.4rem; /* 24px */
+  --spacing-xl: 3.2rem; /* 32px */
 
   /* --- RAIO DE BORDA (Arredondamento) --- */
   --radius-sm: 4px;
