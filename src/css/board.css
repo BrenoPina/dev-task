@@ -131,3 +131,15 @@
 .btn-concluido:hover {
   background-color: var(--color-success-hover);
 }
+
+.column__card.is-dragging {
+  opacity: 0.4;
+  border: 2px dashed #3b82f6;
+}
+
+.column__list.column__list--dropzone {
+  background-color: rgba(59, 130, 246, 0.08); /* Fundo azul bem subtil */
+  border: 2px dashed #3b82f6;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}

@@ -89,26 +89,52 @@ function renderBoard(tasks) {
 }
 
 board.addEventListener('dragstart', event => {
-  const draggedCard = event.target;
-  const cardId = draggedCard.dataset.id;
-  event.dataTransfer.setData('text/plain', cardId);
-  console.log('Cartão selecionado para arrastar:', cardId);
+  const draggedCard = event.target.closest('.column__card');
+
+  if (draggedCard) {
+    draggedCard.classList.add('is-dragging');
+
+    const cardId = draggedCard.dataset.id;
+    event.dataTransfer.setData('text/plain', cardId);
+  }
+});
+
+board.addEventListener('dragend', event => {
+  const draggedCard = event.target.closest('.column__card');
+  if (draggedCard) {
+    draggedCard.classList.remove('is-dragging');
+  }
+});
+
+board.addEventListener('dragenter', event => {
+  const targetList = event.target.closest('.column__list');
+  if (targetList) {
+    targetList.classList.add('column__list--dropzone');
+  }
+});
+
+board.addEventListener('dragleave', event => {
+  const targetList = event.target.closest('.column__list');
+  if (targetList && event.target === targetList) {
+    targetList.classList.remove('column__list--dropzone');
+  }
 });
 
 board.addEventListener('dragover', event => {
   const isOverList = event.target.closest('.column__list');
-
   if (isOverList) {
     event.preventDefault();
-    console.log('Você está sobrevoando uma coluna válida');
   }
 });
 
 board.addEventListener('drop', event => {
   event.preventDefault();
+
   const targetList = event.target.closest('.column__list');
 
   if (targetList) {
+    targetList.classList.remove('column__list--dropzone');
+
     const cardId = event.dataTransfer.getData('text/plain');
 
     let newStatus = '';
