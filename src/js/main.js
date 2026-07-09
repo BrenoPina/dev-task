@@ -155,4 +155,23 @@ board.addEventListener('drop', event => {
   }
 });
 
+board.addEventListener('click', event => {
+  const advancedButton = event.target.closest('.btn-concluir');
+  if (!advancedButton) return;
+
+  const currentCard = advancedButton.closest('.column__card');
+  const currentCardId = currentCard.dataset.id;
+
+  const currentTask = tasks.find(task => task.id === currentCardId);
+
+  if (currentTask) {
+    if (currentTask.status === 'todo') {
+      currentTask.status = 'inprogress';
+    } else if (currentTask.status === 'inprogress') {
+      currentTask.status = 'completed';
+    }
+  }
+  renderBoard(tasks);
+});
+
 renderBoard(tasks);
