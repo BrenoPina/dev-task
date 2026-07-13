@@ -4,8 +4,9 @@
   --font-secondary: 'Poppins', sans-serif;
 
   /* --- CORES PRINCIPAIS --- */
-  --color-brand-primary: #4f46e5; /* Indigo (Cor de destaque/Ação principal) */
+  --color-brand-primary: #4f46e5;
   --color-brand-primary-hover: #4338ca;
+  --color-brand-primary-light: #b5b1f5;
 
   /* --- CORES SEMÂNTICAS --- */
   --color-success: #16a34a; /* Verde (Para tarefas concluídas/botão concluir) */
@@ -60,6 +61,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  font-family: var(--font-primary);
 }
 
 ul {
@@ -71,18 +73,32 @@ ul {
   margin: 0 auto;
 }
 
-.btn-primary {
+.btn {
   font-size: 1.4rem;
+  padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--color-brand-primary);
   color: #fff;
-  padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-sm);
   transition: background-color 0.3s ease;
 }
 
-.btn-primary:hover {
+.btn--primary {
+  background-color: var(--color-brand-primary);
+}
+
+.btn--primary:hover {
   background-color: var(--color-brand-primary-hover);
+}
+
+.btn--secondary {
+  background-color: var(--color-border);
+  color: var(--color-text-muted);
+  transition: color 0.3s ease;
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-border);
+  color: var(--color-text-main);
 }
