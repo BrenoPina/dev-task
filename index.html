@@ -21,7 +21,7 @@
           <h1>Tarefas</h1>
           <p>Acompanhe tudo sobre sua equipe em um só lugar.</p>
         </div>
-        <button class="btn-primary" id="btn-adicionar-tarefa">
+        <button class="btn btn--primary" id="btn-open-modal">
           Adicionar tarefa
           <i class="fa-solid fa-plus" aria-hidden="true"></i>
         </button>
@@ -41,5 +41,35 @@
         <ul class="column__list column__list--completed"></ul>
       </section>
     </main>
+    <dialog class="modal" id="modal">
+      <div class="modal__content">
+        <h4 class="modal__title">Nova tarefa</h4>
+
+        <form class="modal__form form">
+          <div class="form__wrapper">
+            <label class="form__label" for="task-name">Título da tarefa</label>
+            <input type="text" placeholder="Titulo da tarefa" id="task-name" class="form__input" />
+          </div>
+          <div class="form__wrapper">
+            <label class="form__label" for="task-description">Descrição</label>
+            <textarea
+              placeholder="Descricão"
+              id="task-description"
+              cols="30"
+              rows="10"
+              class="form__textarea"
+            ></textarea>
+          </div>
+          <div class="form__actions">
+            <button class="btn btn--secondary" id="btn-cancel" type="button">Cancelar</button>
+            <button class="btn btn--primary">Criar tarefa</button>
+          </div>
+        </form>
+
+        <button type="button" class="modal__close-button" id="btn-close" aria-label="Fechar modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </dialog>
   </body>
 </html>
