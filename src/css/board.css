@@ -7,6 +7,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .column__list {
@@ -15,6 +16,13 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 650px;
+  overflow-y: auto;
+}
+
+.column__list::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
 
 .column__list--completed {

@@ -49,6 +49,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -101,4 +103,10 @@ ul {
 .btn--secondary:hover {
   background-color: var(--color-border);
   color: var(--color-text-main);
+}
+
+:root {
+  font-size: 62.5%;
+  --primary-font: 'Poppins', sans-serif;
+  --secondary-font: 'Inter', sans-serif;
 }

@@ -103,3 +103,8 @@ dialog::backdrop {
 .btn-close i {
   font-size: 1.2rem;
 }
+
+.btn--primary:disabled {
+  background-color: var(--color-brand-primary-light);
+  cursor: not-allowed;
+}

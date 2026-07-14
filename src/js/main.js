@@ -195,4 +195,39 @@ board.addEventListener('click', event => {
   renderBoard(tasks);
 });
 
+const form = document.querySelector('#form');
+const titleTask = document.querySelector('#task-name');
+const descriptionTask = document.querySelector('#task-description');
+const btnAddTask = document.querySelector('#btn-add-task');
+
+const formReset = () => {
+  form.reset();
+  btnAddTask.disabled = true;
+  modal.close();
+};
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const titleValue = titleTask.value.trim();
+  const descriptionValue = descriptionTask.value.trim();
+
+  if (titleValue) {
+    const newTask = {
+      id: new Date().getTime().toString(),
+      title: titleValue,
+      description: descriptionValue,
+      date: new Date().toLocaleDateString('pt-BR'),
+      status: 'todo'
+    };
+
+    tasks.push(newTask);
+    renderBoard(tasks);
+    formReset();
+  }
+});
+
+titleTask.addEventListener('input', () => {
+  btnAddTask.disabled = titleTask.value.trim() ? false : true;
+});
+
 renderBoard(tasks);

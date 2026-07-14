@@ -45,7 +45,7 @@
       <div class="modal__content">
         <h4 class="modal__title">Nova tarefa</h4>
 
-        <form class="modal__form form">
+        <form class="modal__form form" id="form">
           <div class="form__wrapper">
             <label class="form__label" for="task-name">Título da tarefa</label>
             <input type="text" placeholder="Titulo da tarefa" id="task-name" class="form__input" />
@@ -62,7 +62,7 @@
           </div>
           <div class="form__actions">
             <button class="btn btn--secondary" id="btn-cancel" type="button">Cancelar</button>
-            <button class="btn btn--primary">Criar tarefa</button>
+            <button class="btn btn--primary" id="btn-add-task" disabled>Criar tarefa</button>
           </div>
         </form>
 
