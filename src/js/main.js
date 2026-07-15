@@ -46,8 +46,14 @@ function createCardElement(task) {
   cardDescription.className = 'card__description';
   cardDescription.textContent = task.description;
 
+  const deleteButton = document.createElement('button');
+  deleteButton.className = 'btn-deletar';
+  deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+  deleteButton.setAttribute('aria-label', 'Excluir tarefa');
+
   cardContent.appendChild(cardTitle);
   cardContent.appendChild(cardDescription);
+  cardContent.appendChild(deleteButton);
 
   const cardInfo = document.createElement('div');
   cardInfo.className = 'card__info';
@@ -171,6 +177,7 @@ board.addEventListener('drop', event => {
 
     if (clickedTask) {
       clickedTask.status = newStatus;
+      saveTasks(tasks);
       renderBoard(tasks);
     }
   }
@@ -178,18 +185,29 @@ board.addEventListener('drop', event => {
 
 board.addEventListener('click', event => {
   const advancedButton = event.target.closest('.btn-concluir');
-  if (!advancedButton) return;
+  const deleteButton = event.target.closest('.btn-deletar');
 
-  const currentCard = advancedButton.closest('.column__card');
-  const currentCardId = currentCard.dataset.id;
+  if (!advancedButton && !deleteButton) return;
 
-  const currentTask = tasks.find(task => task.id === currentCardId);
+  if (deleteButton) {
+    const currentCard = deleteButton.closest('.column__card');
+    const currentCardId = currentCard.dataset.id;
+    let newTasks = tasks.filter(task => task.id !== currentCardId);
+    renderBoard(newTasks);
+    return;
+  }
 
-  if (currentTask) {
-    if (currentTask.status === 'todo') {
-      currentTask.status = 'inprogress';
-    } else if (currentTask.status === 'inprogress') {
-      currentTask.status = 'completed';
+  if (advancedButton) {
+    const currentCard = advancedButton.closest('.column__card');
+    const currentCardId = currentCard.dataset.id;
+    const currentTask = tasks.find(task => task.id === currentCardId);
+
+    if (currentTask) {
+      if (currentTask.status === 'todo') {
+        currentTask.status = 'inprogress';
+      } else if (currentTask.status === 'inprogress') {
+        currentTask.status = 'completed';
+      }
     }
   }
   renderBoard(tasks);
