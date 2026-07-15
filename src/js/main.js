@@ -1,10 +1,19 @@
-import { tasks } from '../../data.js';
-
 const board = document.querySelector('.board');
 const btnOpenModal = document.querySelector('#btn-open-modal');
 const btnCancel = document.querySelector('#btn-cancel');
 const btnClose = document.querySelector('#btn-close');
 const modal = document.querySelector('#modal');
+
+function saveTasks(tasks) {
+  return localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  return tasks;
+}
+
+let tasks = loadTasks();
 
 function closeModal() {
   modal.close();
@@ -192,8 +201,9 @@ board.addEventListener('click', event => {
   if (deleteButton) {
     const currentCard = deleteButton.closest('.column__card');
     const currentCardId = currentCard.dataset.id;
-    let newTasks = tasks.filter(task => task.id !== currentCardId);
-    renderBoard(newTasks);
+    tasks = tasks.filter(task => task.id !== currentCardId);
+    saveTasks(tasks);
+    renderBoard(tasks);
     return;
   }
 
@@ -210,6 +220,7 @@ board.addEventListener('click', event => {
       }
     }
   }
+  saveTasks(tasks);
   renderBoard(tasks);
 });
 
@@ -239,6 +250,7 @@ form.addEventListener('submit', event => {
     };
 
     tasks.push(newTask);
+    saveTasks(tasks);
     renderBoard(tasks);
     formReset();
   }
