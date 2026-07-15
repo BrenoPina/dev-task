@@ -119,6 +119,12 @@ function renderBoard(tasks) {
 
   Object.keys(lists).forEach(status => {
     if (lists[status] && fragments[status]) {
+      if (fragments[status].children.length === 0) {
+        const emptyElement = document.createElement('p');
+        emptyElement.className = 'column__empty-state';
+        emptyElement.textContent = 'Nenhuma tarefa por aqui! 🎉';
+        fragments[status].appendChild(emptyElement);
+      }
       lists[status].appendChild(fragments[status]);
     }
   });

@@ -72,13 +72,27 @@
 }
 
 /* card */
-.column__card {
+.column__card,
+.column__empty-state {
   padding: var(--spacing-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background-color: var(--color-bg-card);
+}
+
+.column__empty-state {
+  font-size: 1.6rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+.column__card {
+  position: relative;
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s ease-in-out;
+  background-color: var(--color-bg-card);
 }
 
 .column__card:hover {
@@ -100,6 +114,12 @@
 .card__description {
   font-size: 1.2rem;
   color: var(--color-text-muted);
+}
+
+.btn-deletar {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
 }
 
 .card__info {
