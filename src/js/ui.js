@@ -95,3 +95,16 @@ export const renderBoard = tasks => {
     }
   });
 };
+
+export const showUIError = message => {
+  const errorLabel = document.querySelector('#form-error');
+
+  if (errorLabel) {
+    errorLabel.textContent = message;
+    setTimeout(() => {
+      errorLabel.textContent = '';
+    }, 3000);
+  } else {
+    console.error('Elemento de erro ausente no DOM. Erro:', message);
+  }
+};

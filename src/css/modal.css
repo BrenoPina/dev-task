@@ -108,3 +108,13 @@ dialog::backdrop {
   background-color: var(--color-brand-primary-light);
   cursor: not-allowed;
 }
+
+.error-message {
+  font-size: 1.3rem;
+  color: red;
+  display: block;
+}
+
+.form__input.input--error {
+  border: 1px solid red;
+}

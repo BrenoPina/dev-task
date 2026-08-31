@@ -1,5 +1,5 @@
 import { saveTasks, loadTasks } from './storage.js';
-import { renderBoard } from './ui.js';
+import { renderBoard, showUIError } from './ui.js';
 import { openModal, closeModal } from './modal.js';
 
 let tasks = loadTasks();
@@ -108,37 +108,59 @@ board.addEventListener('click', event => {
 const form = document.querySelector('#form');
 const titleTask = document.querySelector('#task-name');
 const descriptionTask = document.querySelector('#task-description');
-const btnAddTask = document.querySelector('#btn-add-task');
 
 const formReset = () => {
   form.reset();
-  btnAddTask.disabled = true;
+  titleTask.classList.remove('input--error');
   closeModal();
 };
+
+const validateTaskName = taskName => {
+  return tasks.some(task => task.title.toLowerCase() === taskName.toLowerCase());
+};
+
+const validateInputs = () => {
+  const titleValue = titleTask.value.trim();
+  const isDuplicate = validateTaskName(titleValue);
+  titleTask.classList.toggle('input--error', isDuplicate);
+};
+
+const createAndSaveTask = (title, description) => {
+  if (!title) {
+    throw new Error('O título é obrigatório.');
+  }
+
+  if (validateTaskName(title)) {
+    throw new Error('Já existe uma tarefa com esse nome.');
+  }
+  const newTask = {
+    id: crypto.randomUUID(),
+    title,
+    description,
+    date: new Date().toLocaleDateString('pt-BR'),
+    status: 'todo'
+  };
+
+  tasks.push(newTask);
+  saveTasks(tasks);
+  return newTask;
+};
+
+titleTask.addEventListener('input', validateInputs);
 
 form.addEventListener('submit', event => {
   event.preventDefault();
   const titleValue = titleTask.value.trim();
   const descriptionValue = descriptionTask.value.trim();
 
-  if (titleValue) {
-    const newTask = {
-      id: new Date().getTime().toString(),
-      title: titleValue,
-      description: descriptionValue,
-      date: new Date().toLocaleDateString('pt-BR'),
-      status: 'todo'
-    };
-
-    tasks.push(newTask);
-    saveTasks(tasks);
-    renderBoard(tasks);
-    formReset();
+  try {
+    createAndSaveTask(titleValue, descriptionValue);
+  } catch (error) {
+    showUIError(error.message);
+    return;
   }
-});
-
-titleTask.addEventListener('input', () => {
-  btnAddTask.disabled = titleTask.value.trim() ? false : true;
+  renderBoard(tasks);
+  formReset();
 });
 
 renderBoard(tasks);
