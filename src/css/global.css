@@ -105,8 +105,8 @@ ul {
   color: var(--color-text-main);
 }
 
-:root {
-  font-size: 62.5%;
-  --primary-font: 'Poppins', sans-serif;
-  --secondary-font: 'Inter', sans-serif;
+@media screen and (max-width: 1250px) {
+  .container {
+    margin-inline: 2rem;
+  }
 }
